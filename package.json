@@ -2,7 +2,7 @@
   "name": "tapex",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "main.tsx",
   "scripts": {
     "commit": "git add . && git-cz",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --cache --fix",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
+    "@types/react": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "4",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
@@ -37,6 +38,10 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "typescript": "^4.4.3"
+  },
+  "peerDependencies": {
+    "antd": "^4.16.13",
+    "react": "^17.0.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
