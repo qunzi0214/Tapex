@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "outDir": "lib",
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "strictNullChecks": true,
@@ -20,7 +21,11 @@
     ],
     "resolveJsonModule": true
   },
+  "include": [
+    "./**/*"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "./lib/**/*"
   ]
 }

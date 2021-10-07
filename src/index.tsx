@@ -5,7 +5,7 @@ import { Table } from 'antd'
 // import { InfoCircleOutlined } from '@ant-design/icons'
 
 // styles
-// import styles from './index.less'
+import './index.less'
 
 interface TapexProps{
   className?: string
@@ -72,6 +72,7 @@ const Tapex: FC<TapexProps> = ({
   return (
     <div className={className}>
       <Table
+        className='tapex-root'
         columns={columns as any}
         dataSource={data}
         scroll={{ x: 1800 }}
