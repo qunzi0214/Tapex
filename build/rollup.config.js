@@ -1,7 +1,7 @@
 import { babel } from '@rollup/plugin-babel'
 
 export default {
-  input: 'src/main.tsx',
+  input: 'src/index.tsx',
   output: {
     file: 'lib/index.esm.js',
     format: 'esm',

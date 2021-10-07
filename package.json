@@ -2,7 +2,8 @@
   "name": "tapex",
   "version": "0.0.1",
   "description": "",
-  "main": "main.tsx",
+  "main": "index.tsx",
+  "module": "lib/index.esm.js",
   "scripts": {
     "commit": "git add . && git-cz",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --cache --fix",
@@ -30,6 +31,7 @@
     "@rollup/plugin-babel": "^5.3.0",
     "@types/react": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "4",
+    "antd": "^4.16.13",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "7",
