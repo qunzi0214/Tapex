@@ -1,20 +1,24 @@
 import React from 'react'
+import cs from 'classnames'
 
 // styles
 import './index.less'
 
+// types
+import { TapexInstance } from './types'
+interface TapexProps {
+  className?: string
+  tapex: TapexInstance
+}
+
 // modules
 export { useTapex } from './hooks'
-
-export interface TapexProps {
-  className?: string
-}
 
 const Tapex: React.FC<TapexProps> = ({
   className,
 }) => {
   return (
-    <div className={className}>
+    <div className={cs(className, 'tapex-root')}>
       test
     </div>
   )
