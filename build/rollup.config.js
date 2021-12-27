@@ -37,5 +37,5 @@ export default {
       extensions,
     }),
   ],
-  external: ['react', 'antd', '/@babel/runtime/'],
+  external: ['react', 'antd', 'classnames', 'lodash'],
 }
