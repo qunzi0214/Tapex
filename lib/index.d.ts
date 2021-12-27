@@ -1,11 +1,8 @@
-import { FC } from 'react';
+import React from 'react';
 import './index.less';
-interface TapexProps {
+export { useTapex } from './hooks';
+export interface TapexProps {
     className?: string;
-    bordered?: boolean;
-    infiniteScroll?: boolean;
-    columns?: any;
-    dataSource?: any;
 }
-declare const Tapex: FC<TapexProps>;
+declare const Tapex: React.FC<TapexProps>;
 export default Tapex;

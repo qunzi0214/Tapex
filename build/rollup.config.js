@@ -9,7 +9,6 @@ import commonjs from '@rollup/plugin-commonjs'
 import pkg from '../package.json'
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx']
-const name = 'Tapex'
 
 export default {
   input: 'src/index.tsx',
@@ -17,14 +16,11 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
+      exports: 'named',
     }, {
       file: pkg.module,
       format: 'es',
-    },
-    {
-      file: pkg.browser,
-      format: 'iife',
-      name,
+      exports: 'named',
     },
   ],
   plugins: [
