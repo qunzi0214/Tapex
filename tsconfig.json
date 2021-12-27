@@ -1,11 +1,31 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "outDir": "lib",
     "emitDeclarationOnly": true,
     "isolatedModules": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "target": "es6",
+    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "lib": [
+      "es2015",
+      "es2016",
+      "es2017",
+      "dom"
+    ],
+    "resolveJsonModule": true
   },
+  "include": [
+    "./**/*"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "./lib/**/*"
   ]
 }

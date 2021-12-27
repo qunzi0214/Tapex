@@ -2,13 +2,18 @@
   "name": "tapex",
   "version": "0.0.1",
   "description": "",
-  "main": "main.tsx",
+  "module": "lib/index.esm.js",
+  "main": "lib/index.cjs.js",
+  "browser": "lib/index.iife.js",
   "scripts": {
     "commit": "git add . && git-cz",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --cache --fix",
     "lint:style": "stylelint \"./src/**/*.{less,css}\" --config=.stylelintrc.json --fix",
-    "build": "rollup --config ./build/rollup.config.js"
+    "build:tapex": "rollup --config ./build/rollup.config.js",
+    "build:types": "tsc",
+    "build": "rm -rf lib && yarn build:tapex && yarn build:types"
   },
+  "typings": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qunzi0214/Tapex.git"
@@ -28,9 +33,14 @@
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
     "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
     "@types/react": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "4",
+    "antd": "^4.16.13",
+    "autoprefixer": "^10.3.7",
     "commitizen": "^4.2.4",
+    "cssnano": "^5.0.8",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "7",
     "eslint-config-standard-with-typescript": "^21.0.1",
@@ -41,18 +51,19 @@
     "eslint-plugin-react": "^7.26.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.0",
+    "less": "^4.1.2",
     "lint-staged": "^11.1.2",
+    "postcss": "^8.3.9",
     "rollup": "^2.57.0",
+    "rollup-plugin-postcss": "^4.0.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "typescript": "^4.4.3"
   },
-  "dependencies": {
-    "@babel/runtime": "^7.15.4"
-  },
   "peerDependencies": {
     "antd": "^4.16.13",
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
