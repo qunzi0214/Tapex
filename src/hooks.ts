@@ -6,7 +6,7 @@ import { TapexInstance } from './types'
 // hooks
 export const useTapex = (rootKey: string = 'root'): TapexInstance => {
   const [form] = Form.useForm()
-  const [tableData, setTableData] = useState<any[]>([])
+  const [tableData, setTableData] = useState<Array<Record<string, any>>>([])
 
   return {
     ...form,
