@@ -1,58 +1,39 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Form } from 'antd'
 
-import { TapexInstance } from './types'
+import { TapexInstance, TapexRowData } from './types'
 
 // hooks
-export const useTapex = (rootKey: string = 'root'): TapexInstance => {
+export const useTapex = (rootKey: string = 'root'): [TapexInstance] => {
   const [form] = Form.useForm()
-  const [tableData, setTableData] = useState<Array<Record<string, any>>>([])
+  const [tableData, setTableData] = useState<TapexRowData[]>([])
+  const tapex = useMemo<TapexInstance>(
+    () => ({
+      ...form,
 
-  return {
-    ...form,
+      getRootKey () {
+        return rootKey
+      },
+      getTableData () {
+        return tableData
+      },
 
-    getRootKey () {
-      return rootKey
-    },
-    getTableData () {
-      return tableData
-    },
+      setAllValues (values) {
+        this.setFieldsValue({
+          [rootKey]: values,
+        })
+        setTableData([...values])
+      },
+      getAllValues () {
+        return this.getFieldsValue(true)[rootKey] ?? []
+      },
+      getValueByPath (path) {
+        const [rowIndex, field] = path
+        return this.getAllValues()?.[rowIndex]?.[field]
+      },
+    }),
+    [tableData],
+  )
 
-    initAllValues (values) {
-      this.setFieldsValue({
-        [rootKey]: values,
-      })
-      setTableData(
-        values.map((value, index) => ({
-          ...value,
-          key: String(index),
-        })),
-      )
-    },
-    getAllValues () {
-      return this.getFieldsValue(true)[rootKey] ?? []
-    },
-    getValueByPath (path) {
-      const [rowIndex, field] = path
-      return this.getAllValues()?.[rowIndex]?.[field]
-    },
-    setValueByPath (path, value) {
-      const [rowIndex, field] = path
-      const values = this.getAllValues()
-
-      if (rowIndex in values && field in values[rowIndex]) {
-        values[rowIndex][field] = value
-      }
-
-      this.setFieldsValue({
-        [rootKey]: values,
-      })
-      setTableData(
-        values.map((value, index) => ({
-          ...value,
-          key: String(index),
-        })),
-      )
-    },
-  }
+  return [tapex]
 }
