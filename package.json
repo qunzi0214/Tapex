@@ -86,5 +86,8 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "antd": "4.17.4"
   }
 }

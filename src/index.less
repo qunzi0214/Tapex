@@ -1,3 +1,115 @@
-.tapex-root {
-  position: relative;
+@prefix: ~'tapex';
+@bordeColor: #EBEDF0;
+
+.@{prefix} {
+  &-root {
+    .@{prefix}-cell-box {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      transition: 0.2s all linear;
+
+      & > * {
+        width: 100%;
+      }
+
+      &:focus-within {
+        box-shadow: 0 0 0 1px #1763fb;
+        background-color: #fff;
+      }
+
+      &.@{prefix}-cell-empty {
+        color: #ccc;
+      }
+
+      &.@{prefix}-cell-error {
+        color: #f33;
+
+        // rewrite input error
+        input {
+          color: #f33;
+        }
+
+        input::placeholder {
+          color: #f33;
+        }
+
+        // rewrite select error
+        .ant-select-selector .ant-select-selection-search-input,
+        .ant-select-selection-placeholder {
+          color: #f33;
+        }
+      }
+      &.@{prefix}-cell-error:focus-within {
+        box-shadow: 0 0 0 1px #f33;
+      }
+    }
+    .@{prefix}-cell-txt {
+      padding: 0 12px;
+      margin: 0;
+      overflow: hidden;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      height: 100%;
+      line-height: 40px;
+    }
+
+    // table rewrite
+    .ant-table.ant-table-bordered > .ant-table-container {
+      border: none;
+      // border-color: @bordeColor;
+    }
+
+    .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table {
+      border: none;
+      border-top: 1px solid @bordeColor;
+    }
+
+    .ant-table.ant-table-bordered > .ant-table-container > .ant-table-header > table > thead > tr > th {
+      border-color: @bordeColor;
+      color: #999;
+      background-color: #f7f8fa;
+      border-bottom: none;
+      padding: 10px 12px;
+      height: 41px;
+
+      &:nth-child(1) {
+        border-left: 1px solid @bordeColor;
+      }
+    }
+
+    .ant-table-bordered .ant-table-body > table {
+      border: none;
+    }
+
+    .ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > tbody > tr > td {
+      padding: 0;
+      height: 41px;
+      border-color: @bordeColor;
+
+      &:nth-child(1) {
+        border-left: 1px solid @bordeColor;
+      }
+    }
+
+    .ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > tbody > tr:nth-child(2) > td {
+      border-top: 1px solid @bordeColor;
+      height: 42px;
+    }
+
+    .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+      background: #fafbfd;
+    }
+
+    .ant-table.ant-table-bordered > .ant-table-container > .ant-table-body > table > tbody > tr > .ant-table-cell-fix-right-first::after {
+      border-right: none;
+    }
+
+    // input rewrite
+    .ant-input {
+      padding-left: 12px;
+    }
+  }
 }

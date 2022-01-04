@@ -1,6 +1,7 @@
 # build
 node_modules
 yarn.lock
+lib
 
 # file
 .eslintcache
