@@ -2,14 +2,18 @@
 import { ReactNode } from 'react'
 import { FormInstance } from 'antd'
 
+export interface TapexRowData {
+  uniqueKey: string
+  [k: string]: any
+}
+
 export type TapexInstance = FormInstance<any> & {
   getRootKey: () => string
-  getTableData: () => Array<Record<string, any>>
+  getTableData: () => TapexRowData[]
 
-  initAllValues: <T extends Record<string, any>>(values: T[]) => void
-  getAllValues: <T extends Record<string, any>>() => T[]
+  setAllValues: <T extends TapexRowData>(values: T[]) => void
+  getAllValues: <T extends TapexRowData>() => T[]
   getValueByPath: (path: [number, string]) => any
-  setValueByPath: (path: [number, string], value: any) => void
 }
 
 export type TapexCellProps = Record<string, any> | ((record: Record<string, any>) => Record<string, any>)

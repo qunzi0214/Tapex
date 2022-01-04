@@ -4,10 +4,10 @@ import { Form, Table } from 'antd'
 import { columnsHandler } from './utils'
 
 // types
-import { TapexInstance, TapexColumnsType } from './types'
+import { TapexInstance, TapexColumnsType, TapexRowData } from './types'
 interface TapexContainerProps {
   tapex: TapexInstance
-  dataSource: Array<Record<string, any>>
+  dataSource: TapexRowData[]
   columns: TapexColumnsType
   scroll?: any
   expandable?: any
@@ -24,6 +24,7 @@ const TapexContainer: FC<TapexContainerProps> = ({
     <Form form={tapex}>
       <Table
         columns={columnsHandler(columns, tapex.getRootKey())}
+        rowKey={(record: any) => record.uniqueKey}
         dataSource={dataSource}
         scroll={scroll}
         pagination={false}
