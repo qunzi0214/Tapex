@@ -37,7 +37,7 @@ export const TapexCellRender: FC<TapexCellRenderProps> = ({
   const { uniqueKey } = record
 
   const [cellType, setCellType] = useState<'read' | 'edit'>('read')
-  const [textType, setTextType] = useState<'normal' | 'empty'>('empty')
+  const [textType, setTextType] = useState<'normal' | 'empty' | 'error'>('empty')
   const [text, setText] = useState('')
   const [toolText, setToolText] = useState('')
 
@@ -88,13 +88,9 @@ export const TapexCellRender: FC<TapexCellRenderProps> = ({
   return (
     <Tooltip
       title={cellErrors?.[0] ?? (cellType === 'read' ? toolText : undefined)}
-      color={(cellErrors !== undefined) && cellErrors?.length > 0 ? '#ff3333' : undefined}
+      color={(cellErrors !== undefined) && cellErrors?.length > 0 ? '#f33' : undefined}
       destroyTooltipOnHide
-      trigger='focus'
-      // title={cellType === 'read' ? toolText : undefined}
-    // overlayStyle={{ transform: 'scale(1)' }}
-    // mouseEnterDelay={cellErrors?.[0] ? 0 : 1}
-    // mouseEnterDelay={1.5}
+      mouseEnterDelay={(cellErrors !== undefined) && cellErrors?.length > 0 ? 0 : 1}
     >
       <div
         className={cs({
