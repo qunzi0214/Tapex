@@ -1,0 +1,12 @@
+# dir
+build/
+src/
+types/
+
+# file
+.babelrc
+.eslintcache
+.eslintignore
+.gitignore
+.stylelintrc.json
+tsconfig.json
