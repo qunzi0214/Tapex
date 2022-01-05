@@ -37,5 +37,5 @@ export default {
       extensions,
     }),
   ],
-  external: ['react', 'antd', 'classnames', 'lodash'],
+  external: ['react', 'antd', 'classnames', 'lodash', 'async-validator'],
 }

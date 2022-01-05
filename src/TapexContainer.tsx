@@ -1,10 +1,15 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Form, Table } from 'antd'
 
-import { columnsHandler } from './utils'
+import { columnsHandler, ErrorListContext } from './utils'
 
 // types
-import { TapexInstance, TapexColumnsType, TapexRowData } from './types'
+import {
+  TapexInstance,
+  TapexColumnsType,
+  TapexRowData,
+  ErrListType,
+} from './types'
 interface TapexContainerProps {
   tapex: TapexInstance
   dataSource: TapexRowData[]
@@ -20,17 +25,27 @@ const TapexContainer: FC<TapexContainerProps> = ({
   scroll,
   expandable,
 }) => {
+  const [errorList, setErrorList] = useState<ErrListType>(undefined)
+
+  useEffect(() => {
+    tapex.initValidateCallBack(
+      (errList: ErrListType) => setErrorList(errList),
+    )
+  }, [])
+
   return (
     <Form form={tapex}>
-      <Table
-        columns={columnsHandler(columns, tapex.getRootKey())}
-        rowKey={(record: any) => record.uniqueKey}
-        dataSource={dataSource}
-        scroll={scroll}
-        pagination={false}
-        expandable={expandable}
-        bordered
-      />
+      <ErrorListContext.Provider value={errorList}>
+        <Table
+          columns={columnsHandler(columns, tapex)}
+          rowKey={(record: any) => record.uniqueKey}
+          dataSource={dataSource}
+          scroll={scroll}
+          pagination={false}
+          expandable={expandable}
+          bordered
+        />
+      </ErrorListContext.Provider>
     </Form>
   )
 }
