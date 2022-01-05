@@ -14,6 +14,10 @@ export type TapexInstance = FormInstance<any> & {
   setAllValues: <T extends TapexRowData>(values: T[]) => void
   getAllValues: <T extends TapexRowData>() => T[]
   getValueByPath: (path: [number, string]) => any
+
+  addRulesByPath: (rowKey: string, field: string, rules: any[]) => void
+  initValidateCallBack: (callback: Function) => void
+  validateAllValues: () => Promise<any[]> | undefined
 }
 
 export type TapexCellProps = Record<string, any> | ((record: Record<string, any>) => Record<string, any>)
@@ -37,13 +41,20 @@ export type TapexColumnsType = Array<{
 }>
 
 export interface TapexCellRenderProps {
-  record: Record<string, any>
+  record: TapexRowData
   rowIndex: number
   colIndex: string
 
+  tapex: TapexInstance
   formRootKey: string
   injectRecord: boolean
   cellProps: TapexCellProps
   CellRender: (props: Record<string, any>) => JSX.Element
   TextRender: TextRenderType
+}
+
+export type ErrListType = undefined | {
+  [k: string]: {
+    [k: string]: string[]
+  }
 }
