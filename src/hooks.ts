@@ -27,7 +27,6 @@ export const useTapex = (rootKey: string = 'root'): [TapexInstance] => {
           [rootKey]: values,
         })
         setTableData([...values])
-        validatorObj.current = {}
       },
       getAllValues () {
         return this.getFieldsValue(true)[rootKey] ?? []
