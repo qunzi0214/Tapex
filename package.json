@@ -1,6 +1,6 @@
 {
   "name": "tapex",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "module": "lib/index.esm.js",
   "main": "lib/index.cjs.js",
